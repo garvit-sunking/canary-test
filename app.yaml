@@ -22,11 +22,11 @@ spec:
     canary:
       stableService: nginx
       canaryService: nginx-canary
-      dynamicStableScale: true       # scale stable down as canary weight goes up
+      dynamicStableScale: true    
       trafficRouting:
-        istio:                       # internal (pod -> svc)
+        istio:                      
           virtualService: {name: nginx, routes: [primary]}
-        nginx:                       # external (ingress)
+        nginx:                  
           stableIngress: nginx
           additionalIngressAnnotations:
             canary-by-header: X-Canary
@@ -46,7 +46,7 @@ spec:
       containers:
       - name: nginx
         image: nginx:1.27-alpine
-        env: [{name: VERSION, value: v3}]
+        env: [{name: VERSION, value: v2}]
         command: ["sh", "-c", "echo $VERSION > /usr/share/nginx/html/index.html && exec nginx -g 'daemon off;'"]
         ports: [{containerPort: 80}]
 ---
