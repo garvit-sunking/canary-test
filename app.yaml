@@ -22,6 +22,7 @@ spec:
     canary:
       stableService: nginx
       canaryService: nginx-canary
+      dynamicStableScale: true       # scale stable down as canary weight goes up
       trafficRouting:
         istio:                       # internal (pod -> svc)
           virtualService: {name: nginx, routes: [primary]}
